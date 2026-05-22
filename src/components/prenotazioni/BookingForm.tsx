@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -13,7 +13,15 @@ import {
 } from 'lucide-react';
 import 'react-day-picker/style.css';
 
-const TIME_SLOTS = ['19:30', '20:00', '20:30', '21:00', '21:30', '22:00', '22:30'];
+const LUNCH_SLOTS = ['12:30', '13:00', '13:30', '14:00', '14:30'];
+const DINNER_SLOTS = ['19:00', '19:30', '20:00', '20:30', '21:00', '21:30'];
+
+function getSlotsForDate(date: Date | undefined): string[] {
+  if (!date) return [...LUNCH_SLOTS, ...DINNER_SLOTS];
+  const day = date.getDay();
+  if (day === 0) return LUNCH_SLOTS;
+  return [...LUNCH_SLOTS, ...DINNER_SLOTS];
+}
 
 const tomorrow = addDays(startOfDay(new Date()), 1);
 
@@ -50,6 +58,17 @@ export default function BookingForm() {
   });
 
   const guests = watch('guests') ?? 2;
+  const selectedDate = watch('date');
+  const selectedTime = watch('time');
+
+  const availableSlots = getSlotsForDate(selectedDate);
+  const isSunday = selectedDate?.getDay() === 0;
+
+  useEffect(() => {
+    if (selectedTime && !availableSlots.includes(selectedTime)) {
+      setValue('time', '');
+    }
+  }, [selectedDate, selectedTime, availableSlots, setValue]);
 
   async function onSubmit(data: FormData) {
     setServerError(null);
@@ -69,7 +88,7 @@ export default function BookingForm() {
 
     if (!res.ok) {
       const body = await res.json().catch(() => ({}));
-      setServerError(body.message ?? "Errore durante l'invio. Riprova più tardi.");
+      setServerError(body.message ?? `Errore durante l'invio. Riprova più tardi.`);
       return;
     }
 
@@ -83,13 +102,13 @@ export default function BookingForm() {
         animate={{ opacity: 1, scale: 1 }}
         className="max-w-lg mx-auto text-center py-24 px-4"
       >
-        <div className="w-20 h-20 rounded-full bg-teal-50 flex items-center justify-center mx-auto mb-6">
-          <CheckCircle className="w-10 h-10 text-teal-600" />
+        <div className="w-20 h-20 border border-brine/30 flex items-center justify-center mx-auto mb-6">
+          <CheckCircle className="w-9 h-9 text-brine" />
         </div>
-        <h2 className="font-playfair text-3xl font-bold text-slate-800 mb-4">
+        <h2 className="font-display italic text-3xl font-medium text-sea-text mb-4">
           Prenotazione ricevuta!
         </h2>
-        <p className="text-stone-500 leading-relaxed">
+        <p className="font-sans text-sea-soft leading-relaxed">
           Grazie per aver scelto il Dattero di Mare.<br />
           La contatteremo al più presto per confermare il suo tavolo.
         </p>
@@ -141,9 +160,9 @@ export default function BookingForm() {
 
       {/* Date picker */}
       <div>
-        <p className="flex items-center gap-2 text-sm font-medium text-slate-700 mb-3">
-          <CalendarDays className="w-4 h-4 text-amber-500" />
-          Data <span className="text-red-400">*</span>
+        <p className="font-sans flex items-center gap-2 text-sm font-medium text-sea-text/70 mb-3">
+          <CalendarDays className="w-4 h-4 text-brine" />
+          Data <span className="text-terra">*</span>
         </p>
         <Controller
           control={control}
@@ -153,39 +172,48 @@ export default function BookingForm() {
               mode="single"
               selected={field.value instanceof Date && !isNaN(field.value.getTime()) ? field.value : undefined}
               onSelect={(d) => field.onChange(d)}
-              disabled={{ before: tomorrow }}
+              disabled={[{ dayOfWeek: [1] }, { before: tomorrow }]}
               locale={it}
-              className="border border-stone-200 rounded-xl bg-white p-2 inline-block"
+              className="border border-sea/10 bg-white p-2 inline-block"
             />
           )}
         />
         {errors.date && (
-          <p className="mt-1 text-sm text-red-500">
+          <p className="mt-1 font-sans text-sm text-terra">
             {errors.date.message ?? 'Seleziona una data'}
           </p>
         )}
       </div>
 
+      {/* Sunday notice */}
+      {isSunday && (
+        <div className="px-4 py-3 border border-brine/25 bg-brine/5">
+          <p className="font-sans text-sm text-brine-deep">
+            Domenica: solo pranzo 12:30 – 15:00
+          </p>
+        </div>
+      )}
+
       {/* Time slots */}
       <div>
-        <p className="flex items-center gap-2 text-sm font-medium text-slate-700 mb-3">
-          <Clock className="w-4 h-4 text-amber-500" />
-          Orario <span className="text-red-400">*</span>
+        <p className="font-sans flex items-center gap-2 text-sm font-medium text-sea-text/70 mb-3">
+          <Clock className="w-4 h-4 text-brine" />
+          Orario <span className="text-terra">*</span>
         </p>
         <Controller
           control={control}
           name="time"
           render={({ field }) => (
             <div className="flex flex-wrap gap-2">
-              {TIME_SLOTS.map((slot) => (
+              {availableSlots.map((slot) => (
                 <button
                   key={slot}
                   type="button"
                   onClick={() => field.onChange(slot)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-colors border ${
+                  className={`font-sans px-4 py-2 text-sm font-medium transition-colors border ${
                     field.value === slot
-                      ? 'bg-amber-500 text-slate-900 border-amber-500'
-                      : 'border-stone-200 text-slate-600 hover:border-amber-300 hover:bg-amber-50'
+                      ? 'bg-sea text-sand border-sea'
+                      : 'border-sea/15 text-sea-soft hover:border-brine/50 hover:text-sea-text'
                   }`}
                 >
                   {slot}
@@ -195,37 +223,37 @@ export default function BookingForm() {
           )}
         />
         {errors.time && (
-          <p className="mt-1 text-sm text-red-500">{errors.time.message}</p>
+          <p className="mt-1 font-sans text-sm text-terra">{errors.time.message}</p>
         )}
       </div>
 
       {/* Guest counter */}
       <div>
-        <p className="flex items-center gap-2 text-sm font-medium text-slate-700 mb-3">
-          <Users className="w-4 h-4 text-amber-500" />
-          Numero di ospiti <span className="text-red-400">*</span>
+        <p className="font-sans flex items-center gap-2 text-sm font-medium text-sea-text/70 mb-3">
+          <Users className="w-4 h-4 text-brine" />
+          Numero di ospiti <span className="text-terra">*</span>
         </p>
         <div className="flex items-center gap-4">
           <button
             type="button"
             onClick={() => setValue('guests', Math.max(1, guests - 1), { shouldValidate: true })}
-            className="w-10 h-10 rounded-full border border-stone-300 text-slate-700 hover:border-amber-400 transition-colors flex items-center justify-center text-xl leading-none"
+            className="font-sans w-10 h-10 border border-sea/15 text-sea-soft hover:border-brine transition-colors flex items-center justify-center text-xl leading-none"
           >
             −
           </button>
-          <span className="w-8 text-center text-xl font-semibold text-slate-800 tabular-nums">
+          <span className="font-sans w-8 text-center text-xl font-semibold text-sea-text tabular-nums">
             {guests}
           </span>
           <button
             type="button"
             onClick={() => setValue('guests', Math.min(20, guests + 1), { shouldValidate: true })}
-            className="w-10 h-10 rounded-full border border-stone-300 text-slate-700 hover:border-amber-400 transition-colors flex items-center justify-center text-xl leading-none"
+            className="font-sans w-10 h-10 border border-sea/15 text-sea-soft hover:border-brine transition-colors flex items-center justify-center text-xl leading-none"
           >
             +
           </button>
         </div>
         {errors.guests && (
-          <p className="mt-1 text-sm text-red-500">{errors.guests.message}</p>
+          <p className="mt-1 font-sans text-sm text-terra">{errors.guests.message}</p>
         )}
       </div>
 
@@ -245,17 +273,17 @@ export default function BookingForm() {
 
       {/* Server error */}
       {serverError && (
-        <div className="px-4 py-3 rounded-lg bg-red-50 border border-red-200">
-          <p className="text-sm text-red-600">{serverError}</p>
+        <div className="px-4 py-3 border border-terra/30 bg-terra/5">
+          <p className="font-sans text-sm text-terra">{serverError}</p>
         </div>
       )}
 
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full py-4 bg-amber-500 hover:bg-amber-400 disabled:opacity-60 disabled:cursor-not-allowed text-slate-900 font-semibold rounded-full transition-colors"
+        className="font-sans w-full py-4 bg-sea hover:bg-sea-light disabled:opacity-60 disabled:cursor-not-allowed text-sand font-semibold transition-colors"
       >
-        {isSubmitting ? 'Invio in corso…' : 'Conferma prenotazione'}
+        {isSubmitting ? `Invio in corso…` : 'Conferma prenotazione'}
       </button>
     </motion.form>
   );
@@ -278,22 +306,22 @@ function Field({
 }) {
   return (
     <div>
-      <p className="flex items-center gap-2 text-sm font-medium text-slate-700 mb-1.5">
-        <span className="text-amber-500">{icon}</span>
+      <p className="font-sans flex items-center gap-2 text-sm font-medium text-sea-text/70 mb-1.5">
+        <span className="text-brine">{icon}</span>
         {label}
-        {required && <span className="text-red-400">*</span>}
+        {required && <span className="text-terra">*</span>}
       </p>
-      {hint && <p className="text-xs text-stone-400 mb-1.5">{hint}</p>}
+      {hint && <p className="font-sans text-xs text-sea-soft mb-1.5">{hint}</p>}
       {children}
-      {error && <p className="mt-1 text-sm text-red-500">{error}</p>}
+      {error && <p className="mt-1 font-sans text-sm text-terra">{error}</p>}
     </div>
   );
 }
 
 function inputCls(hasError: boolean) {
   return [
-    'w-full px-4 py-2.5 rounded-lg border text-slate-800 placeholder-stone-400 bg-white',
-    'focus:outline-none focus:ring-2 focus:ring-amber-400/50 transition',
-    hasError ? 'border-red-300' : 'border-stone-200 hover:border-stone-300',
+    'w-full px-4 py-2.5 border text-sea-text placeholder-sea-soft/50 bg-white font-sans text-sm',
+    'focus:outline-none focus:ring-1 focus:ring-brine/40 transition',
+    hasError ? 'border-terra/40' : 'border-sea/15 hover:border-sea/25',
   ].join(' ');
 }

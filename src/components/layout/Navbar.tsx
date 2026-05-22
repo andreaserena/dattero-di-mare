@@ -18,14 +18,14 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-slate-900/95 backdrop-blur-sm border-b border-white/10">
+    <header className="sticky top-0 z-50 bg-sea/95 backdrop-blur-sm border-b border-sand/10">
       <nav className="max-w-6xl mx-auto px-4 h-20 flex items-center justify-between">
 
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 text-white">
-          <Fish className="w-5 h-5 text-amber-400" />
-          <span className="font-playfair text-xl font-semibold tracking-wide">
-            Dattero di Mare
+        <Link href="/" className="flex items-center gap-2 text-sand">
+          <Fish className="w-5 h-5 text-brine" />
+          <span className="font-display italic text-xl font-semibold tracking-wide">
+            Il Dattero di Mare
           </span>
         </Link>
 
@@ -36,10 +36,10 @@ export default function Navbar() {
               <Link
                 href={href}
                 className={cn(
-                  'text-sm tracking-wide transition-colors',
+                  'font-sans text-sm tracking-wide transition-colors',
                   pathname === href
-                    ? 'text-amber-400 font-medium'
-                    : 'text-white/75 hover:text-white',
+                    ? 'text-brine font-medium'
+                    : 'text-sand/70 hover:text-sand',
                 )}
               >
                 {label}
@@ -49,7 +49,7 @@ export default function Navbar() {
           <li>
             <Link
               href="/prenotazioni"
-              className="px-5 py-2 bg-amber-500 hover:bg-amber-400 text-slate-900 text-sm font-semibold rounded-full transition-colors"
+              className="font-sans px-5 py-2 bg-brine hover:bg-brine-deep text-sea text-sm font-semibold transition-colors"
             >
               Prenota
             </Link>
@@ -58,7 +58,7 @@ export default function Navbar() {
 
         {/* Mobile toggle */}
         <button
-          className="md:hidden text-white p-2 -mr-2"
+          className="md:hidden text-sand p-2 -mr-2"
           onClick={() => setOpen(!open)}
           aria-label={open ? 'Chiudi menu' : 'Apri menu'}
         >
@@ -68,15 +68,15 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {open && (
-        <div className="md:hidden bg-slate-900 border-t border-white/10 px-4 py-6 flex flex-col gap-5">
+        <div className="md:hidden bg-sea border-t border-sand/10 px-4 py-6 flex flex-col gap-5">
           {NAV_LINKS.map(({ href, label }) => (
             <Link
               key={href}
               href={href}
               onClick={() => setOpen(false)}
               className={cn(
-                'text-base',
-                pathname === href ? 'text-amber-400 font-medium' : 'text-white/75',
+                'font-sans text-base',
+                pathname === href ? 'text-brine font-medium' : 'text-sand/70',
               )}
             >
               {label}
@@ -85,7 +85,7 @@ export default function Navbar() {
           <Link
             href="/prenotazioni"
             onClick={() => setOpen(false)}
-            className="mt-2 text-center px-5 py-3 bg-amber-500 hover:bg-amber-400 text-slate-900 font-semibold rounded-full transition-colors"
+            className="font-sans mt-2 text-center px-5 py-3 bg-brine hover:bg-brine-deep text-sea font-semibold transition-colors"
           >
             Prenota un tavolo
           </Link>

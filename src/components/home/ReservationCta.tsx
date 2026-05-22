@@ -2,20 +2,20 @@ import Link from 'next/link';
 
 export default function ReservationCta() {
   return (
-    <section className="py-24 px-4 bg-slate-900 text-white text-center">
+    <section className="py-28 px-4 bg-sand text-center">
       <div className="max-w-xl mx-auto">
-        <p className="text-amber-400 text-xs font-semibold uppercase tracking-widest mb-4">
+        <p className="font-sans text-brine text-xs font-medium uppercase tracking-[0.25em] mb-4">
           Riserva il tuo momento
         </p>
-        <h2 className="font-playfair text-4xl font-bold mb-6">
+        <h2 className="font-display italic text-4xl font-medium text-sea-text mb-6">
           Prenota il tuo tavolo
         </h2>
-        <p className="text-white/55 mb-10 leading-relaxed">
+        <p className="font-sans text-sea-soft mb-10 leading-relaxed">
           Scegli la data e l&apos;orario che preferisci. Ti confermeremo la prenotazione entro breve.
         </p>
         <Link
           href="/prenotazioni"
-          className="inline-block px-10 py-4 bg-amber-500 hover:bg-amber-400 text-slate-900 font-semibold rounded-full transition-colors"
+          className="font-sans inline-block px-10 py-4 bg-sea hover:bg-sea-light text-sand font-semibold transition-colors"
         >
           Prenota ora
         </Link>

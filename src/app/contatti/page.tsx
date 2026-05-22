@@ -4,9 +4,8 @@ import { MapPin, Phone, Mail, Clock } from 'lucide-react';
 import { restaurantInfo } from '@/lib/restaurant-info';
 
 export const metadata: Metadata = {
-  title: 'Contatti — Dattero di Mare',
-  description:
-    'Come raggiungerci, orari di apertura e recapiti del Dattero di Mare. Siamo a Genova, nel cuore del porto.',
+  title: `Contatti — Il Dattero di Mare`,
+  description: `Come raggiungerci, orari di apertura e recapiti del Dattero di Mare a L'Aquila.`,
 };
 
 export default function ContattiPage() {
@@ -15,109 +14,102 @@ export default function ContattiPage() {
   return (
     <>
       {/* Hero */}
-      <div className="bg-slate-900 text-white py-20 px-4 text-center">
-        <p className="text-amber-400 text-xs font-semibold uppercase tracking-widest mb-3">
+      <div className="bg-sand py-24 px-4 text-center border-b border-brine/15">
+        <p className="font-sans text-brine text-xs font-medium uppercase tracking-[0.25em] mb-4">
           Vieni a trovarci
         </p>
-        <h1 className="font-playfair text-5xl font-bold">Contatti</h1>
-        <p className="text-white/55 mt-4 max-w-md mx-auto text-sm leading-relaxed">
-          Siamo a {address.city}, nel cuore del porto. Prenota o scrivici per qualsiasi esigenza.
+        <h1 className="font-display italic text-6xl text-sea-text font-light">
+          Contatti
+        </h1>
+        <p className="font-sans text-sea-soft mt-5 max-w-md mx-auto text-sm leading-relaxed">
+          Siamo a {address.city}. Prenota o scrivici per qualsiasi esigenza.
         </p>
       </div>
 
       {/* Info + Mappa */}
-      <section className="bg-stone-50 py-20 px-4">
-        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+      <section className="bg-sand py-20 px-4">
+        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
 
           {/* Colonna sinistra — Info pratiche */}
           <div className="space-y-8">
-            <h2 className="font-playfair text-2xl font-bold text-slate-800">Informazioni pratiche</h2>
+            <h2 className="font-display italic text-2xl font-medium text-sea-text">Informazioni pratiche</h2>
 
-            <ul className="space-y-6">
+            <ul className="space-y-7">
               <li className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-full bg-amber-50 flex items-center justify-center shrink-0 mt-0.5">
-                  <MapPin className="w-5 h-5 text-amber-500" />
-                </div>
+                <MapPin className="w-4 h-4 mt-1 shrink-0 text-brine" />
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-widest text-stone-400 mb-1">Indirizzo</p>
-                  <p className="text-slate-700">{address.street}</p>
-                  <p className="text-slate-700">{address.zip} {address.city}</p>
+                  <p className="font-sans text-xs font-semibold uppercase tracking-[0.2em] text-sea-soft mb-1">Indirizzo</p>
+                  <p className="font-sans text-sea-text text-sm">{address.street}</p>
+                  <p className="font-sans text-sea-text text-sm">{address.zip} {address.city} ({address.province})</p>
                 </div>
               </li>
 
               <li className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-full bg-amber-50 flex items-center justify-center shrink-0 mt-0.5">
-                  <Phone className="w-5 h-5 text-amber-500" />
-                </div>
+                <Phone className="w-4 h-4 mt-1 shrink-0 text-brine" />
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-widest text-stone-400 mb-1">Telefono</p>
-                  <a href={phone.href} className="text-slate-700 hover:text-amber-600 transition-colors">
+                  <p className="font-sans text-xs font-semibold uppercase tracking-[0.2em] text-sea-soft mb-1">Telefono</p>
+                  <a href={phone.href} className="font-sans text-sea-text text-sm hover:text-brine transition-colors block">
                     {phone.display}
                   </a>
                 </div>
               </li>
 
               <li className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-full bg-amber-50 flex items-center justify-center shrink-0 mt-0.5">
-                  <Mail className="w-5 h-5 text-amber-500" />
-                </div>
+                <Mail className="w-4 h-4 mt-1 shrink-0 text-brine" />
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-widest text-stone-400 mb-1">Email</p>
-                  <a href={email.href} className="text-slate-700 hover:text-amber-600 transition-colors break-all">
+                  <p className="font-sans text-xs font-semibold uppercase tracking-[0.2em] text-sea-soft mb-1">Email</p>
+                  <a href={email.href} className="font-sans text-sea-text text-sm hover:text-brine transition-colors break-all">
                     {email.display}
                   </a>
                 </div>
               </li>
 
               <li className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-full bg-amber-50 flex items-center justify-center shrink-0 mt-0.5">
-                  <Clock className="w-5 h-5 text-amber-500" />
-                </div>
+                <Clock className="w-4 h-4 mt-1 shrink-0 text-brine" />
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-widest text-stone-400 mb-1">Orari</p>
-                  <p className="text-slate-700">{hours.weekdays}: {hours.lunch}</p>
-                  <p className="text-slate-700">{hours.weekdays}: {hours.dinner}</p>
-                  <p className="text-stone-400 text-sm mt-1">{hours.closed}</p>
+                  <p className="font-sans text-xs font-semibold uppercase tracking-[0.2em] text-sea-soft mb-1">Orari</p>
+                  <p className="font-sans text-sea-text text-sm">{hours.weekdays}: {hours.lunch}</p>
+                  <p className="font-sans text-sea-text text-sm">{hours.weekdays}: {hours.dinner}</p>
+                  <p className="font-sans text-sea-text text-sm">{hours.sundayLunchOnly}</p>
+                  <p className="font-sans text-sea-soft text-sm mt-1">{hours.closed}</p>
                 </div>
               </li>
             </ul>
 
             <Link
               href="/prenotazioni"
-              className="inline-block px-7 py-3 bg-amber-500 hover:bg-amber-400 text-slate-900 font-semibold rounded-full transition-colors text-sm"
+              className="font-sans inline-block px-7 py-3 bg-sea hover:bg-sea-light text-sand font-semibold transition-colors text-sm"
             >
               Prenota un tavolo
             </Link>
           </div>
 
           {/* Colonna destra — Mappa */}
-          <div className="h-full min-h-[360px]">
-            {/* TODO: sostituire embed con indirizzo reale del ristorante */}
+          <div className="h-full min-h-[400px]">
             <iframe
               src={mapEmbedUrl}
-              className="w-full h-full min-h-[360px] rounded-xl border-0"
+              className="w-full h-full min-h-[400px] border-0 grayscale"
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="Posizione del ristorante Dattero di Mare"
+              title={`Posizione del ristorante Il Dattero di Mare`}
             />
           </div>
         </div>
       </section>
 
       {/* Seguici */}
-      <section className="bg-white py-16 px-4 border-t border-stone-100">
+      <section className="bg-sand-deep py-16 px-4 border-t border-sea/8">
         <div className="max-w-md mx-auto text-center">
-          <h2 className="font-playfair text-2xl font-bold text-slate-800 mb-3">Seguici</h2>
-          <p className="text-stone-500 text-sm mb-8">
-            Aggiornamenti sul menu, eventi speciali e il meglio del porto di Genova.
+          <h2 className="font-display italic text-2xl font-medium text-sea-text mb-3">Seguici</h2>
+          <p className="font-sans text-sea-soft text-sm mb-8">
+            Aggiornamenti sul menu, eventi speciali e il meglio del pesce fresco.
           </p>
           <div className="flex items-center justify-center gap-4">
-            {/* TODO: sostituire href="#" con URL profilo Instagram reale */}
             <a
               href={social.instagram}
               aria-label="Instagram"
-              className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-stone-200 text-slate-600 hover:border-amber-400 hover:text-amber-600 transition-colors text-sm font-medium"
+              className="font-sans flex items-center gap-2 px-5 py-2.5 border border-sea/15 text-sea-soft hover:border-brine hover:text-brine transition-colors text-sm"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -136,11 +128,10 @@ export default function ContattiPage() {
               </svg>
               Instagram
             </a>
-            {/* TODO: sostituire href="#" con URL pagina Facebook reale */}
             <a
               href={social.facebook}
               aria-label="Facebook"
-              className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-stone-200 text-slate-600 hover:border-amber-400 hover:text-amber-600 transition-colors text-sm font-medium"
+              className="font-sans flex items-center gap-2 px-5 py-2.5 border border-sea/15 text-sea-soft hover:border-brine hover:text-brine transition-colors text-sm"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

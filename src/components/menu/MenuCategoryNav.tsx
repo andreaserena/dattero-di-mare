@@ -29,7 +29,6 @@ export default function MenuCategoryNav({ categories }: Props) {
           }
         });
       },
-      // Trigger quando la sezione occupa la fascia centrale dello schermo
       { rootMargin: '-30% 0px -65% 0px' },
     );
 
@@ -42,7 +41,7 @@ export default function MenuCategoryNav({ categories }: Props) {
   }, [categories]);
 
   return (
-    <div className="sticky top-20 z-40 bg-white/92 backdrop-blur-sm border-b border-stone-200 shadow-sm">
+    <div className="sticky top-20 z-40 bg-sand/95 backdrop-blur-sm border-b border-sea/10">
       <div className="max-w-6xl mx-auto px-4 overflow-x-auto scrollbar-hide">
         <ul className="flex min-w-max">
           {categories.map((cat) => (
@@ -50,10 +49,10 @@ export default function MenuCategoryNav({ categories }: Props) {
               <a
                 href={`#${cat}`}
                 className={cn(
-                  'inline-block px-5 py-4 text-sm font-medium border-b-2 transition-colors',
+                  'font-sans inline-block px-5 py-4 text-xs font-medium border-b-2 transition-colors uppercase tracking-[0.2em]',
                   active === cat
-                    ? 'border-amber-500 text-amber-600'
-                    : 'border-transparent text-stone-500 hover:text-stone-800',
+                    ? 'border-brine text-brine'
+                    : 'border-transparent text-sea-text/45 hover:text-sea-text',
                 )}
               >
                 {LABELS[cat]}

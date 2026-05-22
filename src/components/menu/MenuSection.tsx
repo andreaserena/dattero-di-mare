@@ -1,5 +1,4 @@
 import type { Dish, DishCategory } from '@/types/database';
-import DishCard from './DishCard';
 
 const LABELS: Record<DishCategory, string> = {
   antipasti: 'Antipasti',
@@ -18,17 +17,32 @@ interface Props {
 export default function MenuSection({ category, dishes }: Props) {
   return (
     <section id={category} className="scroll-mt-36">
-      <div className="mb-8">
-        <h2 className="font-playfair text-3xl font-bold text-slate-800">
+      <div className="mb-10">
+        <h2 className="font-display italic text-3xl font-medium text-sea-text">
           {LABELS[category]}
         </h2>
-        <div className="mt-2 w-10 h-0.5 bg-amber-400 rounded-full" />
+        <div className="mt-3 w-8 h-px bg-brine/50" />
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+      <ul className="divide-y divide-sea/8">
         {dishes.map((dish) => (
-          <DishCard key={dish.id} dish={dish} />
+          <li key={dish.id} className="py-5">
+            <div className="flex items-baseline justify-between gap-4">
+              <span className="font-sans text-sm font-semibold uppercase tracking-[0.12em] text-sea-text">
+                {dish.name}
+              </span>
+              <span className="font-sans text-sm font-medium text-brine shrink-0">
+                {dish.price}€
+              </span>
+            </div>
+            {dish.description && (
+              <p className="font-sans italic text-sm text-sea-soft mt-1 leading-relaxed">
+                {dish.description}
+              </p>
+            )}
+          </li>
         ))}
-      </div>
+      </ul>
     </section>
   );
 }

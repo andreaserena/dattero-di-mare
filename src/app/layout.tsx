@@ -1,26 +1,28 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
-import { Playfair_Display } from "next/font/google";
+import { Cormorant_Garamond, Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
+const cormorant = Cormorant_Garamond({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
+  style: ['normal', 'italic'],
+  variable: '--font-cormorant',
+  display: 'swap',
 });
 
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  variable: "--font-playfair",
-  display: "swap",
+const inter = Inter({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600'],
+  variable: '--font-inter',
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
-  title: "Dattero di Mare — Ristorante di Pesce",
+  title: "Il Dattero di Mare — Cucina di mare a L'Aquila",
   description:
-    "Cucina di mare autentica, pesce fresco selezionato ogni giorno. Prenota il tuo tavolo.",
+    "Crudi d'autore, pesce fresco selezionato ogni giorno. Ristorante di pesce a L'Aquila, nel cuore dell'Abruzzo.",
 };
 
 export default function RootLayout({
@@ -31,7 +33,7 @@ export default function RootLayout({
   return (
     <html lang="it">
       <body
-        className={`${geistSans.variable} ${playfair.variable} font-sans antialiased bg-stone-50`}
+        className={`${cormorant.variable} ${inter.variable} font-sans antialiased bg-sand text-sea-text`}
       >
         <Navbar />
         <main>{children}</main>

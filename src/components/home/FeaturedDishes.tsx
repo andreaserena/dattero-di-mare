@@ -1,40 +1,39 @@
 import Link from 'next/link';
 
-// Placeholder statico — in Step 4 questo componente leggerà i dati da Supabase
 const PLACEHOLDER_DISHES = [
   {
     id: '1',
-    name: 'Crudo di mare',
-    description: 'Selezione di gamberi rossi, scampi e ostriche del giorno',
-    price: 22,
-    category: 'Antipasti',
+    name: `Plateau Dattero`,
+    description: `Selezione di crudi del giorno: tartare, carpaccio, ostriche`,
+    price: 35,
+    category: 'Crudi',
   },
   {
     id: '2',
-    name: 'Spaghetti alle vongole',
-    description: 'Vongole veraci, aglio, prezzemolo, vino bianco DOC',
-    price: 14,
+    name: 'Linguine alle vongole veraci',
+    description: `Vongole del giorno, aglio, vino bianco, prezzemolo`,
+    price: 18,
     category: 'Primi',
   },
   {
     id: '3',
-    name: 'Frittura di paranza',
-    description: 'Piccoli pesci di scoglio fritti, croccanti e leggeri',
-    price: 16,
+    name: 'Ricciola scottata',
+    description: `Cipollotto fondente, mela verde, olio del Garda`,
+    price: 26,
     category: 'Secondi',
   },
 ];
 
 export default function FeaturedDishes() {
   return (
-    <section className="py-20 px-4 bg-white">
-      <div className="max-w-6xl mx-auto">
+    <section className="py-32 px-4 bg-sand-deep">
+      <div className="max-w-5xl mx-auto">
 
-        <div className="text-center mb-14">
-          <p className="text-amber-500 text-xs font-semibold uppercase tracking-widest mb-3">
+        <div className="text-center mb-16">
+          <p className="font-sans text-brine text-xs font-medium uppercase tracking-[0.25em] mb-4">
             I nostri piatti
           </p>
-          <h2 className="font-playfair text-4xl font-bold text-slate-800">
+          <h2 className="font-display italic text-4xl font-medium text-sea-text">
             Le specialità dello chef
           </h2>
         </div>
@@ -43,32 +42,30 @@ export default function FeaturedDishes() {
           {PLACEHOLDER_DISHES.map((dish) => (
             <div
               key={dish.id}
-              className="rounded-2xl border border-stone-100 overflow-hidden bg-stone-50 hover:shadow-md transition-shadow"
+              className="border border-sea/10 hover:border-brine/40 transition-colors bg-sand"
             >
-              {/* Placeholder immagine */}
-              <div className="h-48 bg-gradient-to-br from-slate-800 to-slate-700 flex items-center justify-center">
-                <span className="text-5xl opacity-20 select-none">🐟</span>
+              {/* Image placeholder */}
+              <div className="h-52 bg-sand-deep flex items-center justify-center">
+                <div className="w-8 h-0.5 bg-brine/30" />
               </div>
               <div className="p-6">
-                <span className="text-xs text-amber-500 uppercase tracking-widest font-medium">
+                <span className="font-sans text-xs text-brine uppercase tracking-widest font-medium">
                   {dish.category}
                 </span>
-                <h3 className="font-playfair text-xl font-semibold text-slate-800 mt-1 mb-2">
-                  {dish.name}
-                </h3>
-                <p className="text-stone-500 text-sm leading-relaxed mb-4">
+                <h3 className="font-display italic text-xl text-sea-text mt-2 mb-2">{dish.name}</h3>
+                <p className="font-sans text-sea-soft text-sm leading-relaxed mb-4">
                   {dish.description}
                 </p>
-                <span className="font-semibold text-slate-800">€{dish.price.toFixed(2)}</span>
+                <span className="font-sans font-medium text-sea-text">{dish.price}€</span>
               </div>
             </div>
           ))}
         </div>
 
-        <div className="text-center mt-12">
+        <div className="text-center mt-14">
           <Link
             href="/menu"
-            className="inline-block px-8 py-3 border-2 border-slate-800 text-slate-800 hover:bg-slate-800 hover:text-white rounded-full font-semibold transition-colors"
+            className="font-sans inline-block px-8 py-3 border border-sea/20 hover:border-brine text-sea-text hover:text-brine transition-colors"
           >
             Vedi tutto il menu
           </Link>
