@@ -1,36 +1,102 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Dattero di Mare — Sito Ristorante
 
-## Getting Started
+Next.js 14 · App Router · TypeScript · Tailwind CSS · Supabase
 
-First, run the development server:
+---
+
+## Setup locale
 
 ```bash
+npm install
+cp .env.local.example .env.local   # compila con le tue credenziali
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Apri [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Variabili d'ambiente
 
-## Learn More
+| Variabile | Dove trovarla |
+|---|---|
+| `NEXT_PUBLIC_SUPABASE_URL` | Dashboard Supabase → Settings → API |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Dashboard Supabase → Settings → API |
+| `SUPABASE_SERVICE_ROLE_KEY` | Dashboard Supabase → Settings → API |
+| `TELEGRAM_BOT_TOKEN` | @BotFather su Telegram |
+| `TELEGRAM_CHAT_ID` | ID della chat/canale che riceve le notifiche |
+| `RESEND_API_KEY` | Dashboard Resend → API Keys |
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Database — applicare la migration
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Le tabelle (`dishes`, `bookings`) sono definite in:
 
-## Deploy on Vercel
+```
+supabase/migrations/0001_initial_schema.sql
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Opzione A — Supabase CLI (consigliata)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+# prima installazione
+npm install -g supabase
+
+# login e link al progetto
+supabase login
+supabase link --project-ref <PROJECT_REF>
+
+# applica la migration
+supabase db push
+```
+
+### Opzione B — SQL Editor nella dashboard
+
+1. Vai su [supabase.com](https://supabase.com) → il tuo progetto → **SQL Editor**
+2. Crea una nuova query
+3. Copia e incolla il contenuto di `supabase/migrations/0001_initial_schema.sql`
+4. Clicca **Run**
+
+---
+
+## Seed dati di esempio
+
+I piatti di esempio (14 portate per un ristorante di pesce ligure) si trovano in:
+
+```
+supabase/seeds/dishes_seed.sql
+```
+
+### Come eseguire il seed
+
+1. Vai su [supabase.com](https://supabase.com) → il tuo progetto → **SQL Editor**
+2. Clicca **New query**
+3. Copia e incolla il contenuto di `supabase/seeds/dishes_seed.sql`
+4. Clicca **Run**
+
+> **⚠️ Attenzione:** eseguire il seed **una sola volta**. Non ci sono controlli di unicità sui nomi — rieseguire lo script inserisce nuovamente tutti i 14 piatti, duplicandoli nel database.
+
+---
+
+## Struttura del progetto
+
+```
+src/
+├── app/                  # pagine e API routes (Next.js App Router)
+├── components/           # componenti React
+│   ├── layout/           # Navbar, Footer
+│   ├── ui/               # componenti riutilizzabili
+│   ├── home/
+│   ├── menu/
+│   ├── prenotazioni/
+│   └── chatbot/          # placeholder fase 2
+├── lib/
+│   ├── supabase.ts       # client browser (supabase) + admin (supabaseAdmin)
+│   ├── db/
+│   │   ├── dishes.ts     # getDishes(), getDishesByCategory()
+│   │   └── bookings.ts   # createBooking(), getAvailableSlots()
+│   └── utils.ts
+└── types/
+    └── database.ts       # Dish, Booking, BookingInsert, DishCategory
+```
