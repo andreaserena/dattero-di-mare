@@ -1,14 +1,14 @@
 export const restaurantInfo = {
   name: 'Dattero di Mare',
   address: {
-    street: 'Via del Porto 12',
-    city: 'Genova',
-    zip: '16123',
-    full: 'Via del Porto 12, 16123 Genova',
+    street: 'Via Cimino 36',
+    city: `L'Aquila`,
+    zip: '67100',
+    full: `Via Cimino 36, 67100, L'Aquila Italia`,
   },
   phone: {
-    display: '+39 010 000 0000',
-    href: 'tel:+390100000000',
+    display: '+39 349 851 7478',
+    href: 'tel:+39 349 851 7478',
   },
   email: {
     display: 'info@dattereodimare.it',
@@ -17,7 +17,7 @@ export const restaurantInfo = {
   hours: {
     weekdays: 'Mar – Dom',
     lunch: '12:30 – 15:00',
-    dinner: '19:30 – 22:30',
+    dinner: '19:00 – 22:00',
     closed: 'Lunedì chiuso',
   },
   social: {
@@ -25,5 +25,5 @@ export const restaurantInfo = {
     facebook: '#',  // TODO: sostituire con URL pagina Facebook reale
   },
   // TODO: sostituire con embed reale una volta confermato l'indirizzo
-  mapEmbedUrl: 'https://maps.google.com/maps?q=Porto+Antico+Genova&output=embed',
+  mapEmbedUrl: 'https://maps.app.goo.gl/K7digpFMAppCYTSV9',
 } as const;
