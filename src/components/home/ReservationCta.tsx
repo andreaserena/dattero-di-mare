@@ -11,7 +11,7 @@ export default function ReservationCta() {
           Prenota il tuo tavolo
         </h2>
         <p className="text-white/55 mb-10 leading-relaxed">
-          Scegli la data e l'orario che preferisci. Ti confermeremo la prenotazione entro breve.
+          Scegli la data e l&apos;orario che preferisci. Ti confermeremo la prenotazione entro breve.
         </p>
         <Link
           href="/prenotazioni"

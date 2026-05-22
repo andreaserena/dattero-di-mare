@@ -52,7 +52,7 @@ export default function ChiSiamoPage() {
         </p>
         <h1 className="font-playfair text-5xl font-bold">Chi siamo</h1>
         <p className="text-white/55 mt-4 max-w-md mx-auto text-sm leading-relaxed">
-          Una famiglia, il mare di Liguria e trent'anni di cucina vissuta con passione.
+          Una famiglia, il mare di Liguria e trent&apos;anni di cucina vissuta con passione.
         </p>
       </div>
 
@@ -65,7 +65,7 @@ export default function ChiSiamoPage() {
             <p>
               Il Dattero di Mare nasce nel cuore del porto di Genova, dove ogni mattina i pescherecci
               scaricano il loro pescato fresco. Fondato da Marco Serena negli anni Novanta, il ristorante
-              è cresciuto attorno a un'idea semplice: portare in tavola solo ciò che il mare offre ogni
+              è cresciuto attorno a un&apos;idea semplice: portare in tavola solo ciò che il mare offre ogni
               giorno, senza concessioni alla stagionalità o alla qualità.
             </p>
             <p>
@@ -75,7 +75,7 @@ export default function ChiSiamoPage() {
             </p>
             <p>
               Oggi il Dattero di Mare è gestito insieme a Laura, responsabile di sala, e a un piccolo
-              team che condivide gli stessi valori. Un posto dove si mangia bene, in un'atmosfera
+              team che condivide gli stessi valori. Un posto dove si mangia bene, in un&apos;atmosfera
               familiare che fa sentire ogni ospite a casa.
             </p>
           </div>
