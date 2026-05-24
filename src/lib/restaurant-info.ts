@@ -28,4 +28,16 @@ export const restaurantInfo = {
     facebook: '#',
   },
   mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2948.743152351151!2d13.397559675249092!3d42.347999135864725!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132fd3ca8fbb351f%3A0x2dba307ffde3678d!2sIl%20dattero%20di%20mare!5e0!3m2!1sit!2ses!4v1779461566557!5m2!1sit!2ses',
+  siteUrl: 'https://datterodimare.it',
+  coordinates: {
+    latitude: 42.3479991,
+    longitude: 13.3975597,
+  },
+  priceRange: '€€€',
+  cuisine: ['Italian', 'Seafood'],
+  openingHoursSpec: [
+    { days: ['Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'], opens: '12:30', closes: '15:00' },
+    { days: ['Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'], opens: '19:00', closes: '22:00' },
+    { days: ['Sunday'], opens: '12:30', closes: '15:00' },
+  ],
 } as const;

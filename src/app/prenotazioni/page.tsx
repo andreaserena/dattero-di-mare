@@ -2,8 +2,10 @@ import type { Metadata } from 'next';
 import BookingForm from '@/components/prenotazioni/BookingForm';
 
 export const metadata: Metadata = {
-  title: 'Prenota un tavolo — Il Dattero di Mare',
-  description: 'Riserva il tuo tavolo al Dattero di Mare. Pesce fresco, cucina di mare, atmosfera unica.',
+  title: 'Prenota un tavolo',
+  description:
+    "Prenota il tuo tavolo al Dattero di Mare a L'Aquila: scegli data e orario online. Aperto a pranzo e cena dal martedì al sabato, domenica solo pranzo.",
+  alternates: { canonical: '/prenotazioni' },
 };
 
 export default function PrenotazioniPage() {

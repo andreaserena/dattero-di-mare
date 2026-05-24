@@ -4,8 +4,10 @@ import { MapPin, Phone, Mail, Clock } from 'lucide-react';
 import { restaurantInfo } from '@/lib/restaurant-info';
 
 export const metadata: Metadata = {
-  title: `Contatti — Il Dattero di Mare`,
-  description: `Come raggiungerci, orari di apertura e recapiti del Dattero di Mare a L'Aquila.`,
+  title: 'Contatti',
+  description:
+    "Come raggiungere Il Dattero di Mare a L'Aquila: indirizzo, telefono, orari di apertura e mappa. Aperto dal martedì al sabato, domenica a pranzo.",
+  alternates: { canonical: '/contatti' },
 };
 
 export default function ContattiPage() {
@@ -13,7 +15,6 @@ export default function ContattiPage() {
 
   return (
     <>
-      {/* Hero */}
       <div className="bg-sand py-24 px-4 text-center border-b border-brine/15">
         <p className="font-sans text-brine text-xs font-medium uppercase tracking-[0.25em] mb-4">
           Vieni a trovarci
@@ -26,11 +27,9 @@ export default function ContattiPage() {
         </p>
       </div>
 
-      {/* Info + Mappa */}
       <section className="bg-sand py-20 px-4">
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
 
-          {/* Colonna sinistra — Info pratiche */}
           <div className="space-y-8">
             <h2 className="font-display italic text-2xl font-medium text-sea-text">Informazioni pratiche</h2>
 
@@ -84,7 +83,6 @@ export default function ContattiPage() {
             </Link>
           </div>
 
-          {/* Colonna destra — Mappa */}
           <div className="h-full min-h-[400px]">
             <iframe
               src={mapEmbedUrl}
@@ -98,7 +96,6 @@ export default function ContattiPage() {
         </div>
       </section>
 
-      {/* Seguici */}
       <section className="bg-sand-deep py-16 px-4 border-t border-sea/8">
         <div className="max-w-md mx-auto text-center">
           <h2 className="font-display italic text-2xl font-medium text-sea-text mb-3">Seguici</h2>
@@ -111,17 +108,7 @@ export default function ContattiPage() {
               aria-label="Instagram"
               className="font-sans flex items-center gap-2 px-5 py-2.5 border border-sea/15 text-sea-soft hover:border-brine hover:text-brine transition-colors text-sm"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="w-4 h-4"
-                aria-hidden="true"
-              >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4" aria-hidden="true">
                 <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
                 <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
                 <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
@@ -133,17 +120,7 @@ export default function ContattiPage() {
               aria-label="Facebook"
               className="font-sans flex items-center gap-2 px-5 py-2.5 border border-sea/15 text-sea-soft hover:border-brine hover:text-brine transition-colors text-sm"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="w-4 h-4"
-                aria-hidden="true"
-              >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4" aria-hidden="true">
                 <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
               </svg>
               Facebook

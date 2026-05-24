@@ -2,8 +2,10 @@ import type { Metadata } from 'next';
 import { Gem, Fish, Mountain } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: `Chi Siamo — Il Dattero di Mare`,
-  description: `La storia del Dattero di Mare: Valerio Di Loreto, una famiglia nel commercio ittico, Maurizio Zanon in cucina. Crudi d'autore nel cuore di L'Aquila.`,
+  title: 'Chi siamo',
+  description:
+    "La storia del Dattero di Mare: Valerio Di Loreto, trent'anni di famiglia nel commercio ittico, e Maurizio Zanon in cucina. Pesce fresco a L'Aquila dal primo giorno.",
+  alternates: { canonical: '/chi-siamo' },
 };
 
 const VALORI = [
@@ -25,20 +27,13 @@ const VALORI = [
 ];
 
 const TEAM = [
-  {
-    name: 'Valerio Di Loreto',
-    role: 'Patron / Fondatore',
-  },
-  {
-    name: 'Maurizio Zanon',
-    role: 'Chef',
-  },
+  { name: 'Valerio Di Loreto', role: 'Patron / Fondatore' },
+  { name: 'Maurizio Zanon', role: 'Chef' },
 ];
 
 export default function ChiSiamoPage() {
   return (
     <>
-      {/* Hero */}
       <div className="bg-sand py-24 px-4 text-center border-b border-brine/15">
         <p className="font-sans text-brine text-xs font-medium uppercase tracking-[0.25em] mb-4">
           La nostra storia
@@ -51,7 +46,6 @@ export default function ChiSiamoPage() {
         </p>
       </div>
 
-      {/* Storia */}
       <section className="bg-sand py-20 px-4">
         <div className="max-w-2xl mx-auto">
           <p className="font-sans text-brine text-xs font-medium uppercase tracking-[0.25em] mb-8">
@@ -71,7 +65,6 @@ export default function ChiSiamoPage() {
         </div>
       </section>
 
-      {/* Filosofia */}
       <section className="bg-sand-deep py-24 px-4">
         <div className="max-w-5xl mx-auto">
           <p className="font-sans text-brine text-xs font-medium uppercase tracking-[0.25em] text-center mb-16">
@@ -89,7 +82,6 @@ export default function ChiSiamoPage() {
         </div>
       </section>
 
-      {/* Il team */}
       <section className="bg-sand py-20 px-4">
         <div className="max-w-3xl mx-auto">
           <p className="font-sans text-brine text-xs font-medium uppercase tracking-[0.25em] text-center mb-16">
